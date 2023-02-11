@@ -2,7 +2,7 @@ NAME	= PhoneBook
 CC		= g++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS	= main.cpp Contact.cpp PhoneBook.cpp
+SRCS	= $(wildcard *.cpp)
 
 OBJDIR	= obj
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))

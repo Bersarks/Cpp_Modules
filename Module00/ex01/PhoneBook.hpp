@@ -1,28 +1,15 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#pragma once
 
-# include <iostream>
-# include <iomanip>
-# include "Contact.hpp"
+#include "Contact.hpp"
 
 class PhoneBook
 {
 	private:
-		Contact		contacts[8];
-		int			contactCount;
-		int			phoneBookIndex;
-		std::string	phName;
-		std::string	phSurName;
-		std::string	phNickName;
-		std::string	phPhoneNumber;
-		std::string	phDarkestSecret;
-
+		Contact contacts[8];
+		int contactCount;
+		void printContact(int index);
 	public:
 		PhoneBook();
-		~PhoneBook();
-		void	addContact();
-		void	searchContact();
-		void	printContact(int index);
+		void addContact();
+		void searchContact();
 };
-
-#endif

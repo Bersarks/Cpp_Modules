@@ -2,82 +2,89 @@
 
 PhoneBook::PhoneBook()
 {
-	this->contactCount = 0;
-	this->phoneBookIndex = 0;
+	contactCount = 0;
 }
 
-PhoneBook::~PhoneBook()
+bool is_number(const std::string& s)
 {
+	if (s.length() > 9)
+		return false;
+
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it)) ++it;
+	return !s.empty() && it == s.end();
 }
 
 void	PhoneBook::addContact()
 {
-	int	i = phoneBookIndex % 8;
+	int i = contactCount % 8;
 
-	contacts[i].setIndex(i);
-	std::cin.ignore();
-	std::cout << "First Name : ";
-	std::getline(std::cin, phName);
-	contacts[i].setName(phName);
+	std::cout << "Enter first name: ";
+	std::getline(std::cin, contacts[i].cFirstName);
 
-	std::cout << "Last Name : ";
-	std::getline(std::cin, phSurName);
-	contacts[i].setSurName(phSurName);
+	std::cout << "Enter last name: ";
+	std::getline(std::cin, contacts[i].cLastName);
 
-	std::cout << "Nick Name : ";
-	std::getline(std::cin, phNickName);
-	contacts[i].setNickName(phNickName);
+	std::cout << "Enter nickname: ";
+	std::getline(std::cin, contacts[i].cNickname);
 
-	std::cout << "Phone Number : ";
-	std::getline(std::cin, phPhoneNumber);
-	contacts[i].setPhoneNumber(phPhoneNumber);
+	std::cout << "Enter phone number: ";
+	std::getline(std::cin, contacts[i].cPhoneNumber);
 
-	std::cout << "Darkest secret : ";
-	std::getline(std::cin, phDarkestSecret);
-	contacts[i].setDarkestSecret(phDarkestSecret);
+	std::cout << "Enter darkest secret: ";
+	std::getline(std::cin, contacts[i].cDarkestSecret);
 
-	phoneBookIndex++;
-	if (contactCount < 8)
-		contactCount++;
+	contactCount++;
 }
 
-void	PhoneBook::printContact(int index)
+str	line(str line)
 {
-	std::cout << "First name : " + PhoneBook::contacts[index].getName() << std::endl;
-	std::cout << "Last name : " + PhoneBook::contacts[index].getSurName() << std::endl;
-	std::cout << "Nickname : " + PhoneBook::contacts[index].getNickName() << std::endl;
-	std::cout << "Phone number : " + PhoneBook::contacts[index].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret : " + PhoneBook::contacts[index].getDarkestSecret() << std::endl;
+	if (line.length() > 10)
+	{
+		line.resize(9);
+		line.append(".");
+	}
+	return (line);
 }
-
-std::string	columnCheck(std::string str)
+void	PhoneBook::printContact(int i)
 {
-	if (str.length() <= 10)
-		return (str);
-	else
-		return (str.substr(0, 9) + '.');
+	std::cout << "First Name: " << contacts[i].cFirstName << "\n";
+	std::cout << "Last Name: " << contacts[i].cLastName << "\n";
+	std::cout << "Nickname: " << contacts[i].cNickname << "\n";
+	std::cout << "Phone Number: " << contacts[i].cPhoneNumber << "\n";
+	std::cout << "Darkest Secret: " << contacts[i].cDarkestSecret << std::endl;
 }
 
 void	PhoneBook::searchContact()
 {
-	int index;
+	int i = 0;
+	str idx;
 
-	std::cout << "     index|first name| last name|  nickname" << std::endl;
-	for (int i = 0; i < PhoneBook::contactCount; i++)
+	std::cout << std::setw(10) << "     index|first name| last name|  nickname" << "\n";
+	std::cout << "-------------------------------------------" << "\n";
+	while (i < contactCount && i < 8)
 	{
-		std::cout << std::right << std::setw(10) << contacts[i].getIndex();
-		std::cout << "|";
-		std::cout << std::right << std::setw(10) << columnCheck(contacts[i].getName());
-		std::cout << "|";
-		std::cout << std::right << std::setw(10) << columnCheck(contacts[i].getSurName());
-		std::cout << "|";
-		std::cout << std::right << std::setw(10) << columnCheck(contacts[i].getPhoneNumber());
-		std::cout << std::endl;
+		std::cout << std::setw(10) << i << "|";
+		std::cout << std::setw(10) << line(contacts[i].cFirstName) << "|";
+		std::cout << std::setw(10) << line(contacts[i].cLastName) << "|";
+		std::cout << std::setw(10) << line(contacts[i].cNickname) << std::endl;
+		i++;
 	}
-	std::cout << "Index : ";
-	std::cin >> index;
-	if (index < 0 || index >= PhoneBook::contactCount)
-		std::cout << "Bad index !" << std::endl;
-	else
-		PhoneBook::printContact(index);
+	while (32)
+	{
+		std::cout << "Contact Index (to exit write: exit): ";
+		std::getline(std::cin, idx);
+		if (is_number(idx) == true)
+			if (atoi(idx.c_str()) < contactCount && atoi(idx.c_str()) < 8)
+			{
+				printContact(atoi(idx.c_str()));
+				break;
+			}
+			else
+				std::cout << "Please give a valid input." << std::endl;
+		else if (idx == "exit")
+			break;
+		else
+			std::cout << "Please give a valid input." << std::endl;
+	}
 }

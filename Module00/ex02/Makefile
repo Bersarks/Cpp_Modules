@@ -1,4 +1,4 @@
-NAME	= megaphone
+NAME	= Bank_Test
 CC		= g++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
@@ -18,6 +18,7 @@ $(OBJDIR)/%.o: %.cpp
 
 clean:
 	@rm -rf $(OBJDIR)
+	@rm -rf test.log
 
 fclean: clean
 	@rm -f $(NAME)
