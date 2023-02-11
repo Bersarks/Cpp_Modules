@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 
 #define str std::string
 

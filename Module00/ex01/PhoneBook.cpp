@@ -18,21 +18,48 @@ bool is_number(const std::string& s)
 void	PhoneBook::addContact()
 {
 	int i = contactCount % 8;
+	str a;
 
+	std::cout << "Don't leave any empty section or you have to try all over again!" << "\n";
 	std::cout << "Enter first name: ";
 	std::getline(std::cin, contacts[i].cFirstName);
+	if (contacts[i].cFirstName.empty())
+	{
+		std::cout << "You can't leave this blank! Try again." << std::endl;
+		return ;
+	}
 
 	std::cout << "Enter last name: ";
 	std::getline(std::cin, contacts[i].cLastName);
+	if (contacts[i].cLastName.empty())
+	{
+		std::cout << "You can't leave this blank! Try again." << std::endl;
+		return ;
+	}
 
 	std::cout << "Enter nickname: ";
 	std::getline(std::cin, contacts[i].cNickname);
+	if (contacts[i].cNickname.empty())
+	{
+		std::cout << "You can't leave this blank! Try again." << std::endl;
+		return ;
+	}
 
 	std::cout << "Enter phone number: ";
 	std::getline(std::cin, contacts[i].cPhoneNumber);
+	if (contacts[i].cPhoneNumber.empty())
+	{
+		std::cout << "You can't leave this blank! Try again." << std::endl;
+		return ;
+	}
 
 	std::cout << "Enter darkest secret: ";
 	std::getline(std::cin, contacts[i].cDarkestSecret);
+	if (contacts[i].cDarkestSecret.empty())
+	{
+		std::cout << "You can't leave this blank! Try again." << std::endl;
+		return ;
+	}
 
 	contactCount++;
 }
