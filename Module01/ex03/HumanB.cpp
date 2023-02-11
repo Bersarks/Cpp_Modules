@@ -6,10 +6,6 @@ HumanB::HumanB(std::string name)
 	this->weapon = NULL;
 }
 
-HumanB::~HumanB()
-{
-}
-
 void	HumanB::attack() const
 {
 	if (this->weapon == NULL)

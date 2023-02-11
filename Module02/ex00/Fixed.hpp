@@ -3,6 +3,8 @@
 
 # include <iostream>
 
+//# define DEBUG
+
 class Fixed
 {
 private:

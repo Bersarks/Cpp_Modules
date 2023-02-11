@@ -4,6 +4,8 @@
 # include <iostream>
 # include <cmath>
 
+//# define DEBUG
+
 class Fixed
 {
 private:

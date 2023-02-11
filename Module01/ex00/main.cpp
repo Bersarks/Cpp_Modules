@@ -2,9 +2,12 @@
 
 int main()
 {
-	Zombie* newZombie = new Zombie("Zombie_1");
-	newZombie->announce();
-	delete newZombie;
+	// Create a new Zombie on the heap
+	Zombie* nZombie = newZombie("Zombie_1");
+	nZombie->announce();
+	delete nZombie;
+
+	// Create a new Zombie on the stack
 	randomChump("Zombie_2");
 	return (0);
 }
