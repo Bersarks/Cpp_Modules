@@ -54,6 +54,7 @@ void	FileOperations::replace(void)
 			else
 				newFile << line[i];
 		}
+		newFile << "\n";
 	}
 	readFile.close();
 	newFile.close();
