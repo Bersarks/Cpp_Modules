@@ -14,7 +14,7 @@ Fixed::Fixed(const int value) : _value(value << _fractionalBits)
 #endif
 }
 
-Fixed::Fixed(const float value) : _value(roundf(value * (1 << _fractionalBits)))
+Fixed::Fixed(const float value) : _value(value * float((1 << _fractionalBits) + (value >= 0 ? 0.5 : -0.5)))
 {
 #ifdef DEBUG
 	std::cout << "Float constructor called" << std::endl;
@@ -97,7 +97,7 @@ Fixed	Fixed::operator+(const Fixed &other) const
 #ifdef DEBUG
 	std::cout << "Addition operator called" << std::endl;
 #endif
-	return (Fixed(toFloat() + other.toFloat()));
+	return (Fixed(_value + other._value));
 }
 
 Fixed	Fixed::operator-(const Fixed &other) const
@@ -105,7 +105,7 @@ Fixed	Fixed::operator-(const Fixed &other) const
 #ifdef DEBUG
 	std::cout << "Subtraction operator called" << std::endl;
 #endif
-	return (Fixed(toFloat() - other.toFloat()));
+	return (Fixed(_value - other._value));
 }
 
 Fixed	Fixed::operator*(const Fixed &other) const
@@ -113,7 +113,8 @@ Fixed	Fixed::operator*(const Fixed &other) const
 #ifdef DEBUG
 	std::cout << "Multiplication operator called" << std::endl;
 #endif
-	return (Fixed(toFloat() * other.toFloat()));
+
+	return (Fixed((_value * other._value) >> 16));
 }
 
 Fixed	Fixed::operator/(const Fixed &other) const
@@ -121,7 +122,7 @@ Fixed	Fixed::operator/(const Fixed &other) const
 #ifdef DEBUG
 	std::cout << "Division operator called" << std::endl;
 #endif
-	return (Fixed(toFloat() / other.toFloat()));
+	return (Fixed(_value / other._value));
 }
 
 Fixed	&Fixed::operator++()
@@ -182,7 +183,7 @@ void	Fixed::setRawBits(const int raw)
 
 float	Fixed::toFloat() const
 {
-	return ((float)_value / (1 << _fractionalBits));
+	return (float(_value) / float(1 << _fractionalBits));
 }
 
 int		Fixed::toInt() const
@@ -192,20 +193,21 @@ int		Fixed::toInt() const
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed)
 {
+	out << fixed.getRawBits() << "\n";
 	out << fixed.toFloat();
 	return (out);
 }
 
 Fixed	Fixed::max(const Fixed &first, const Fixed &second)
 {
-	if (first.toFloat() > second.toFloat())
+	if (first._value > second._value)
 		return (first);
 	return (second);
 }
 
 Fixed	Fixed::min(const Fixed &first, const Fixed &second)
 {
-	if (first.toFloat() < second.toFloat())
+	if (first._value < second._value)
 		return (first);
 	return (second);
 }

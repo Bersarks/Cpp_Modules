@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-//# define DEBUG
+# define DEBUG
 
 class Fixed
 {
