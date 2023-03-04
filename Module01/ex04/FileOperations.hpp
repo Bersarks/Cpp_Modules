@@ -17,7 +17,7 @@ class FileOperations
 		FileOperations(void);
 		FileOperations(std::string filename, std::string s1, std::string s2);
 		~FileOperations(void);
-		/**
+		/*
 		 * @brief Replaces all occurrences of s1 in the file with s2
 		*/
 		void	replace(void);

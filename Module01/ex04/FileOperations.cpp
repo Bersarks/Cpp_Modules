@@ -44,9 +44,9 @@ void	FileOperations::replace(void)
 		return ;
 	while (std::getline(readFile, line))
 	{
-		for (int i = 0; i < (int)line.size(); i++)
+		for (size_t i = 0; i < line.size(); i++)
 		{ 
-			if (i == (int)line.find(this->_s1, i))
+			if (i ==  line.find(this->_s1, i))
 			{
 				newFile << this->_s2;
 				i += std::string(this->_s1).size() - 1;
@@ -54,6 +54,7 @@ void	FileOperations::replace(void)
 			else
 				newFile << line[i];
 		}
+		newFile << "\n";
 	}
 	readFile.close();
 	newFile.close();

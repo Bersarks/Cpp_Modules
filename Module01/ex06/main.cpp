@@ -6,9 +6,6 @@ int	main(int argc, char **argv)
 
 	switch (argc)
 	{
-		case 1:
-			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-			break ;
 		case 2:
 			Harl	harl;
 
