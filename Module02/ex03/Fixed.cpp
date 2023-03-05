@@ -14,7 +14,7 @@ Fixed::Fixed(const int value) : _value(value << _fractionalBits)
 #endif
 }
 
-Fixed::Fixed(const float value) : _value(value * float((1 << _fractionalBits) + (value >= 0 ? 0.5 : -0.5)))
+Fixed::Fixed(const float value) : _value(roundf(value * (1 << _fractionalBits)))
 {
 #ifdef DEBUG
 	std::cout << "Float constructor called" << std::endl;
@@ -97,7 +97,7 @@ Fixed	Fixed::operator+(const Fixed &other) const
 #ifdef DEBUG
 	std::cout << "Addition operator called" << std::endl;
 #endif
-	return (Fixed(_value + other._value));
+	return (Fixed(toFloat() + other.toFloat()));
 }
 
 Fixed	Fixed::operator-(const Fixed &other) const
@@ -182,7 +182,7 @@ void	Fixed::setRawBits(const int raw)
 
 float	Fixed::toFloat() const
 {
-	return (float(_value) / float(1 << _fractionalBits));
+	return ((float)_value / (1 << _fractionalBits));
 }
 
 int		Fixed::toInt() const
@@ -198,14 +198,14 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &fixed)
 
 Fixed	Fixed::max(const Fixed &first, const Fixed &second)
 {
-	if (first._value > second._value)
+	if (first.toFloat() > second.toFloat())
 		return (first);
 	return (second);
 }
 
 Fixed	Fixed::min(const Fixed &first, const Fixed &second)
 {
-	if (first._value < second._value)
+	if (first.toFloat() < second.toFloat())
 		return (first);
 	return (second);
 }
