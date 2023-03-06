@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap()
 {
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
@@ -11,8 +11,9 @@ ScavTrap::ScavTrap() : ClapTrap()
 #endif
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string name)
 {
+	this->_name = name;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
@@ -22,7 +23,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 #endif
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap& other)
 {
 	*this = other;
 #ifdef DEBUG
@@ -68,11 +69,13 @@ void ScavTrap::attack(const std::string& target)
 
 void ScavTrap::guardGate()
 {
-	if (this->_isGuarding == false)
+	if (this->_isGuarding == false && this->_hitPoints > 0)
 	{
 		std::cout << "ScavTrap " << this->_name << " has entered in Gate keeper mode." << std::endl;
 		this->_isGuarding = true;
 	}
-	else
+	else if (this->_hitPoints > 0)
 		std::cout << "ScavTrap " << this->_name << " is already in Gate keeper mode." << std::endl;
+	else
+		std::cout << "ScavTrap " << this->_name << " is already dead." << std::endl;
 }

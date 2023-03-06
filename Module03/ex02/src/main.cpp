@@ -13,8 +13,8 @@ int main()
 
 	FragTrap fragTrap2("FragTrap2");
 	fragTrap2.attack("some random dude");
-	fragTrap2.takeDamage(50);
-	fragTrap2.beRepaired(10);
+	fragTrap2.takeDamage(98);
+	fragTrap2.beRepaired(4);
 	fragTrap2.highFivesGuys();
 
 	return (0);

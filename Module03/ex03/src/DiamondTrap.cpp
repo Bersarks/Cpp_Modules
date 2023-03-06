@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap()
 {
 	_name = "DiamondTrap";
 #ifdef DEBUG
@@ -47,11 +47,6 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 		this->_attackDamage = other._attackDamage;
 	}
 	return *this;
-}
-
-void DiamondTrap::attack(const std::string& target)
-{
-	FragTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI()

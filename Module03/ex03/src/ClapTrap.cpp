@@ -83,7 +83,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	else if (this->_energyPoints == 0)
 		std::cout << "\033[31mClapTrap " << this->_name << " is not able to repair itself, because he doesn't have enough energy points.\033[0m" << std::endl;
 	else if (this->_hitPoints == 0)
-		std::cout << "\033[31mClapTrap " << this->_name << " is not able to repair itself, because he doesn't have enough hit points.\033[0m" << std::endl;
+		std::cout << "\033[31mClapTrap " << this->_name << " is not able to repair itself, because he is already dead.\033[0m" << std::endl;
 	else
 		std::cout << "\033[33mClapTrap " << this->_name << " can't be repaired to have more than 10 hit points.\033[0m" << std::endl;
 }
