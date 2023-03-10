@@ -28,5 +28,8 @@ int main()
 		delete j[i];
 	}
 
+	const Animal* j2 = new Animal();
+	j2->makeSound();
+
 	return (0);
 }
