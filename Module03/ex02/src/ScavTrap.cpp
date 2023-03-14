@@ -23,7 +23,7 @@ ScavTrap::ScavTrap(std::string name)
 #endif
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
 	*this = other;
 #ifdef DEBUG
