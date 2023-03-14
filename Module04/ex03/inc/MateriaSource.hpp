@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
+#include "../interface/IMateriaSource.hpp"
+#include "../interface/AMateria.hpp"
 
 class MateriaSource : public IMateriaSource
 {

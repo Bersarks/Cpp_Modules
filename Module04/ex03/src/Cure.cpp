@@ -1,4 +1,4 @@
-#include "Cure.hpp"
+#include "../inc/Cure.hpp"
 
 Cure::Cure() : AMateria("cure")
 {

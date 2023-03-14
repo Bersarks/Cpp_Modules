@@ -1,4 +1,4 @@
-#include "AMateria.hpp"
+#include "../interface/AMateria.hpp"
 
 AMateria::AMateria() : _type("")
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ICharacter.hpp"
-#include "AMateria.hpp"
+#include "../interface/ICharacter.hpp"
+#include "../interface/AMateria.hpp"
 
 class Character : public ICharacter
 {

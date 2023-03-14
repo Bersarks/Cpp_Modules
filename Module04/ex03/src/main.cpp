@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Character.hpp"
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
-#include "MateriaSource.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
+#include "../inc/Character.hpp"
+#include "../interface/ICharacter.hpp"
+#include "../interface/IMateriaSource.hpp"
+#include "../inc/MateriaSource.hpp"
+#include "../inc/Ice.hpp"
+#include "../inc/Cure.hpp"
 
 int main()
 {

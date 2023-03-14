@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AMateria.hpp"
+#include "../interface/AMateria.hpp"
 
 
 class Cure : public AMateria
